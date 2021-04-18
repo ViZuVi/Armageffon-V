@@ -1,16 +1,19 @@
-import { ActionType } from "./action"
+import {ActionType} from "./action"
 
 const initialState = {
-  data: null
+  asteroids: [],
+  listToDestroy: [],
 }
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_DATA:
-      console.log(action.payload);
+      const asteroidsArrays = Object.values(action.payload);
+      let asteroids = []
+      asteroidsArrays.forEach((asteroid) => (asteroids.push(...asteroid)))
       return {
         ...state,
-        data: action.payload
+        asteroids: asteroids
       };
       default: return state
     }

@@ -1,97 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import Header from '../Header/Header';
+import {Distance} from '../../const'
+import AsteroidsList from '../AsteroidsList/AsteroidsList';
 
-const Main = () => {
+const Main = ({asteroids}) => {
+  const [distanceUnit, setDistanceUnit] = useState(Distance.KILOMETERS)
+  const [isDangerous, setIsDangerous] = useState(false)
+  
   return (
     <div className="page">
       <Header page='MAIN' />
       <main className="page__main">
         <form className="form" action="" method="GET">
           <div className="form__container form__container--dangerous">
-            <input type="checkbox" id="dangerous" />
+            <input type="checkbox" id="dangerous" checked={isDangerous} onChange={() => setIsDangerous(prevState => !prevState)} />
             <label htmlFor="dangerous">Показать только опасные</label>
           </div>
           <div className="form__container form__container--distance">
             <span>Расстояние </span>
-            <input className="visually-hidden" name="distance" type="radio" id="kilometers" />
-            <label className="form__distance-radio form__distance-radio--active" htmlFor="kilometers">в километрах, </label>
-            <input className="visually-hidden" name="distance" type="radio" id="moon-dist" />
-            <label className="form__distance-radio" htmlFor="moon-dist">в дистанциях до луны</label>
+            <input className="visually-hidden" name="distance" type="radio" id="kilometers" onChange={() => setDistanceUnit(Distance.KILOMETERS)} />
+            <label className={`form__distance-radio${distanceUnit === Distance.KILOMETERS ? ` form__distance-radio--active` : ``}`} htmlFor="kilometers">в километрах, </label>
+            <input className="visually-hidden" name="distance" type="radio" id="moon-dist" onChange={() => setDistanceUnit(Distance.LUNAR)} />
+            <label className={`form__distance-radio${distanceUnit === Distance.LUNAR ? ` form__distance-radio--active` : ``}`} htmlFor="moon-dist">в дистанциях до луны</label>
           </div>
         </form>
-        <section className="cards">
-          <article className="card">
-            <div className="card__header">
-              <img className="card__img card__img--asteroid" src="./img/asteroid.png" alt="asteroid" />
-              <img className="card__img card__img--dinosaur" src="./img/dinosaur.svg" alt="dinosaur" />
-            </div>
-            <div className="card__container">
-              <h2 className="card__title">2021 FQ</h2>
-              <div className="card__info-container">
-                <div className="card__info">
-                  <div className="propreties">
-                    <span>Дата</span>
-                    <span className="propreties__center"></span>
-                    <span>12 сентября 2021</span>
-                  </div>
-                  <div className="propreties">
-                    <span>Расстояние</span>
-                    <span className="propreties__center"></span>
-                    <span>7 235 024 км </span>
-                  </div>
-                  <div className="propreties">
-                    <span>Размер</span>
-                    <span className="propreties__center"></span>
-                    <span>85 м</span>
-                  </div>
-                </div>
-                <div className="assessment">
-                  <p className="assessment__text">
-                    Оценка:
-                    <span className="assessment__value">не опасен</span>
-                  </p>
-                  <button className="assessment__button">На уничтожение</button>
-                </div>
-              </div>
-            </div> 
-          </article>
-
-          <article className="card card--danger">
-            <div className="card__header card__header--danger">
-              <img className="card__img card__img--asteroid" src="./img/asteroid.png" alt="asteroid" />
-              <img className="card__img card__img--dinosaur" src="./img/dinosaur.svg" alt="dinosaur" />
-            </div>
-            <div className="card__container">
-              <h2 className="card__title">2021 FQ</h2>
-              <div className="card__info-container">
-                <div className="card__info">
-                  <div className="propreties">
-                    <span>Дата</span>
-                    <span className="propreties__center"></span>
-                    <span>12 сентября 2021</span>
-                  </div>
-                  <div className="propreties">
-                    <span>Расстояние</span>
-                    <span className="propreties__center"></span>
-                    <span>7 235 024 км </span>
-                  </div>
-                  <div className="propreties">
-                    <span>Размер</span>
-                    <span className="propreties__center"></span>
-                    <span>85 м</span>
-                  </div>
-                </div>
-                <div className="assessment">
-                  <p className="assessment__text">
-                    Оценка:
-                    <span className="assessment__value">опасен</span>
-                  </p>
-                  <button className="assessment__button">На уничтожение</button>
-                </div>
-              </div>
-            </div>
-          </article>
-        </section>
+        <AsteroidsList asteroids={isDangerous ? asteroids.filter((asteroid) => asteroid.is_potentially_hazardous_asteroid) : asteroids} distanceUnit={distanceUnit} />
       </main>
       <footer className="footer">
       <p className="footer__text">2021 &copy; Все права и планета защищены</p>
@@ -100,4 +34,8 @@ const Main = () => {
   )
 }
 
-export default Main
+const mapStateToProps = (state) => ({
+  asteroids: state.asteroids,
+});
+
+export default connect(mapStateToProps, null)(Main)

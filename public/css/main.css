@@ -107,6 +107,7 @@ img {
 
 .form__distance-radio {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .form__distance-radio--active {
