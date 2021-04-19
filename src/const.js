@@ -1,7 +1,7 @@
 export const AppRoute = {
   MAIN: '/',
   DESTROY: '/destroy' ,
-  ASTEROID: '/asteroid',
+  ASTEROID: '/asteroid/:id',
 }
 
 export const Distance = {
