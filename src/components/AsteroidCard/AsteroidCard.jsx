@@ -56,7 +56,9 @@ const AsteroidCard = ({asteroid, distanceUnit, isToDestroyPage, onDestroyBtnClic
                   : <button className="assessment__button" onClick={() => onDestroyBtnClick(asteroid)}>На уничтожение</button>
               }
             </div>
-            : <button className="assessment__button" onClick={() => onDeleteBtnClick(asteroid)}>Убрать из списка</button>
+            : <div className="assessment">
+                <button className="assessment__button" onClick={() => onDeleteBtnClick(asteroid)}>Убрать из списка</button>
+              </div>
           }
         </div>
       </div> 
