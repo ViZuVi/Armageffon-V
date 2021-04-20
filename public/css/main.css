@@ -68,6 +68,12 @@ img {
 .header__main-link {
   display: block;
   margin-bottom: 8px;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  cursor: pointer;
 }
 
 .page__title {
@@ -118,6 +124,10 @@ img {
 .form__distance-radio--active {
   text-decoration: none;
   font-weight: 700;
+}
+
+.cards {
+  margin-top: 16px;
 }
 
 .card {
@@ -209,6 +219,17 @@ img {
   background-color: #186DD6;
   color: #ffffff;
   border-radius: 24px;
+  cursor: pointer;
+}
+
+.destroy__button {
+  display: block;
+  border: 2px solid #186DD6;
+  padding: 14px 16px;
+  border-radius: 24px;
+  cursor: pointer;
+  background-color: transparent;
+  margin: 0 auto;
 }
 
 .footer__text {
