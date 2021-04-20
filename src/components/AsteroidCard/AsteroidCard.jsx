@@ -33,17 +33,6 @@ const AsteroidCard = ({asteroid, distanceUnit, isToDestroyPage, onDestroyBtnClic
               <span>{getSize(asteroid)}</span>
             </div>
           </div>
-          {/* <div className="assessment">
-            <p className="assessment__text">
-              Оценка:
-              <span className="assessment__value">{asteroid.is_potentially_hazardous_asteroid ? `опасен` : `не опасен`}</span>
-            </p>
-            {
-              !isToDestroyPage
-                ? <button className="assessment__button" onClick={() => onDestroyBtnClick(asteroid)}>На уничтожение</button>
-                : <button className="assessment__button" onClick={() => onDeleteBtnClick(asteroid)}>Убрать из списка</button>
-            }
-          </div> */}
           {!isToDestroyPage
             ? <div className="assessment">
               <p className="assessment__text">
