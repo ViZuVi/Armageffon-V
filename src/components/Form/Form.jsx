@@ -12,9 +12,9 @@ const Form = ({isDangerous, setIsDangerous, distanceUnit, setDistanceUnit}) => {
     <div className="form__container form__container--distance">
       <span>Расстояние </span>
       <input className="visually-hidden" name="distance" type="radio" id="kilometers" onChange={() => setDistanceUnit(Distance.KILOMETERS)} />
-      <label className={`form__distance-radio${distanceUnit === Distance.KILOMETERS ? ` form__distance-radio--active` : ``}`} htmlFor="kilometers">в километрах, </label>
+      <label className={`form__distance-radio${distanceUnit === Distance.KILOMETERS ? ` form__distance-radio--active` : ``}`} htmlFor="kilometers">в километрах,</label>
       <input className="visually-hidden" name="distance" type="radio" id="moon-dist" onChange={() => setDistanceUnit(Distance.LUNAR)} />
-      <label className={`form__distance-radio${distanceUnit === Distance.LUNAR ? ` form__distance-radio--active` : ``}`} htmlFor="moon-dist">в дистанциях до луны</label>
+      <label className={`form__distance-radio${distanceUnit === Distance.LUNAR ? ` form__distance-radio--active` : ``}`} htmlFor="moon-dist"> в дистанциях до луны</label>
     </div>
   </form>
   );

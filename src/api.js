@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-const URL = `https://api.nasa.gov/neo/rest/v1/feed?start_date=2021-04-14&end_date=2021-04-14&api_key=zxpWPgtAHYvWzbk1iQOvKksjsr2v3ejgwQFPbTvM`;
+const getRequestDate = () => {
+  const date = new Date();
+  const formattedDate = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`
+  return formattedDate
+}
+
+const URL = `https://api.nasa.gov/neo/rest/v1/feed?start_date=${getRequestDate()}&api_key=zxpWPgtAHYvWzbk1iQOvKksjsr2v3ejgwQFPbTvM`;
 const REQUEST_TIMEOUT = 5000;
 
 
