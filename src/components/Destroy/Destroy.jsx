@@ -16,6 +16,9 @@ const Destroy = ({listToDestroy}) => {
             </div>
           : <p>Список для уничтожения пока пуст</p>
       }
+      <footer className="footer">
+        <p className="footer__text">2021 &copy; Все права и планета защищены</p>
+      </footer>
     </div>
   );
 };
